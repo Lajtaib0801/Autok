@@ -1,0 +1,70 @@
+﻿<Window x:Class="Autok.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Autok"
+        mc:Ignorable="d"
+        Title="Autó nyilvántartás" Height="650" Width="800"
+        Closed="Window_Closed">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label" x:Key="defaultLabelWeight">
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Autók:"/>
+            <ListBox x:Name="lbAutok" Height="200" Margin="5" ItemsSource="{Binding autok}"/>
+            <Button x:Name="btnUjAuto" Content="Új autó" Click="btnUjAuto_Click" />
+            <Button x:Name="btnModositas" Content="Módosítás" />
+            <Button x:Name="btnTorles" Content="Törlés" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" IsEnabled="False" x:Name="spAdatok">
+            <Label Content="Adatok:"/>
+            <DockPanel>
+                <Label Content="Típus:" Style="{StaticResource defaultLabelWeight}"/>
+                <TextBox x:Name="tbTipus" />
+            </DockPanel>
+            <DockPanel>
+                <Label Content="Gyártás éve:" Style="{StaticResource defaultLabelWeight}"/>
+                <TextBox x:Name="tbGyartasEve" />
+            </DockPanel>
+            <DockPanel>
+                <Label Content="Ajtók száma:" Style="{StaticResource defaultLabelWeight}"/>
+                <TextBox x:Name="tbAjtokSzama" />
+            </DockPanel>
+            <DockPanel>
+                <Label Content="Szín:" Style="{StaticResource defaultLabelWeight}"/>
+                <TextBox x:Name="tbSzin" />
+            </DockPanel>
+            <Button Content="Mentés" x:Name="btnMentes" Width="100" Click="btnMentes_Click"/>
+            <Button Content="Mégse" x:Name="btnMegse" Width="100"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="Statisztika:"/>
+            <Label Content="{Binding otAjtosokSzama}"/>
+            <Label Content="{Binding toyotakSzama}"/>
+            <Label Content="{Binding legfiatalabbAutok}"/>
+            <Label Content="{Binding homokSzinuekAtlagkora}"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
